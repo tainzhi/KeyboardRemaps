@@ -10,3 +10,5 @@ if not A_IsAdmin
 
 #Include ime.ahk
 #Include keymap.ahk
+#Include CapsLockCtrlEscape.ahk
+#Include EnterRCtrl.ahk
