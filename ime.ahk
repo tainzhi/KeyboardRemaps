@@ -38,7 +38,6 @@ GroupAdd,editor,ahk_class gvim.exe   ;gvim
 
 
 
-
 ;函数
 ;从剪贴板输入到界面
 sendbyclip(var_string)
@@ -175,8 +174,3 @@ return
 return
 
 #IfWinActive
-
-
-
-
-
