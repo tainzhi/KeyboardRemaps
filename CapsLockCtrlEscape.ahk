@@ -2,14 +2,16 @@
 ;
 ;https://gist.github.com/sedm0784/4443120
 ;
-; Esc -> CapsLock
+; LCtrl -> CapsLock
 ; CapsLock -> Esc
 ; CapsLock + any -> LCtrl + any
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-Esc::CapsLock
+#IfWinNotActive ahk_exe mstsc.exe
+
+LCtrl::CapsLock
 
 g_LastCtrlKeyDownTime := 0
 g_AbortSendEsc := false
@@ -115,3 +117,5 @@ g_ControlRepeatDetected := false
 ~*^F12::
     g_AbortSendEsc := true
     return
+
+Return

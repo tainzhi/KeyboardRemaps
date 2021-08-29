@@ -7,6 +7,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+#IfWinNotActive ahk_exe mstsc.exe
+
 ;=====分组配置
 ;新开窗口时，切换到中文输入法的分组
 GroupAdd,cn,ahk_exe QQ.exe  ;QQ
@@ -174,3 +176,5 @@ return
 return
 
 #IfWinActive
+
+return
