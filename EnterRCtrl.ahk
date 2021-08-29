@@ -2,6 +2,7 @@
 ; Enter单个按下，为Enter键
 ; 和其他按键一起按下，为右Ctrl键
 
+#IfWinNotActive ahk_exe mstsc.exe
 
 ; Enter & a之类的remap，把Enter作为prefix后会失去本来的Enter键功能
 ; 即Enter键功能失效，需要重新发送 {Enter}
@@ -62,3 +63,5 @@ Enter & F9::Send ^{F9}
 Enter & F10::Send ^{F10}
 Enter & F11::Send ^{F11}
 Enter & F12::Send ^{F12}
+
+Return
