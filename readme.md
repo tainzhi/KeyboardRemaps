@@ -41,6 +41,7 @@
 - 左Ctrl切换大小写
 - CapsLock单按是Esc键，和其他键组合是左Ctrl键
 - Enter单按是Enter, 和其他键组合是右Ctrl键
+- 在QQ/weixin等工具里面使用中文输入法，在其他编辑器中使用英文输入法
 
 
 - 缺点：对Remote Desktop Connection中的远程系统无效
@@ -101,7 +102,13 @@ control     Control_L (0x25),  Control_R (0x6d)
 清除所有的改键，要么重启，要么执行` setxkbmap -option ''`
 
 ### linux最终改键方案
+实现的改键功能为
 #### 方法1：xrdp的远程桌面
 使用脚本`./remap_keys.sh`, 每次启动时 `sh ./remap_keys.sh`
+
+实现的改键功能有
+- 左Ctrl切换大小写
+- CapsLock单按是Esc键，和其他键组合是左Ctrl键
+- Enter单按是Enter, 和其他键组合是右Ctrl键
 
 #### 方法2：本地linux主机使用kmonad
