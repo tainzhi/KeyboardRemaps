@@ -2,9 +2,6 @@
 我的auto hotkeys脚本, 适用于windows系统
 
 
-# 实现的功能
-- 
-
 # 其他
 ## 一些auto hotkeys基本知识
 ## 关于改键
@@ -30,10 +27,6 @@
 - 可以针对不同的键盘(自带键盘, usb外接键盘)分别配置方案
 
 ### Windows
-#### 方案1: [sharpkeys](https://github.com/randyrants/sharpkeys)修改全局的注册表，可以导出配置。缺点有2
->1 全局方案, 不能根据不同的软件配置不同的remap
->2 写入了注册表, 所以需要重启/重新登陆
->3 最大的缺点: 只能**单键映射单键, 无法多键映射**
 
 #### 方案2：[AutoHotkey]
 [Autohotkey自动切换输入法](https://github.com/lspcieee/lspcieee_ahk)
@@ -43,11 +36,17 @@
 - Enter单按是Enter, 和其他键组合是右Ctrl键
 - 在QQ/weixin等工具里面使用中文输入法，在其他编辑器中使用英文输入法
 
+开机启动：把`main.ahk`的快捷方式放在`C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp`
+
 
 - 缺点：对Remote Desktop Connection中的远程系统无效
 
+#### 方案3: [sharpkeys](https://github.com/randyrants/sharpkeys)修改全局的注册表，可以导出配置。缺点有2
+>1 全局方案, 不能根据不同的软件配置不同的remap
+>2 写入了注册表, 所以需要重启/重新登陆
+>3 最大的缺点: 只能**单键映射单键, 无法多键映射**
 
-#### 方案3：[uncap](https://github.com/susam/uncap)
+#### 方案4：[uncap](https://github.com/susam/uncap)
 
 [参考: 「AutoHotkey 之美」内容导读](https://zhuanlan.zhihu.com/p/19829548)
 [基于AutoHotkey的脚本录制工具](https://www.macrocreator.com/)
@@ -112,3 +111,4 @@ control     Control_L (0x25),  Control_R (0x6d)
 - Enter单按是Enter, 和其他键组合是右Ctrl键
 
 #### 方法2：本地linux主机使用kmonad
+- [参考：开启启动kmond脚本](https://github.com/kmonad/kmonad/tree/master/startup)
