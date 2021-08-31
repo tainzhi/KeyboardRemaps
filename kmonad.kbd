@@ -14,11 +14,97 @@
 
   fallthrough true
 )
+   
+;; ----------levovo laptop T14-----------{{{
+(defsrc
+	;; laptop t14最上面一行
+	;; esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12 	home  end 	ins 	del
+	esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+	grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
+	tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
+	caps    a    s    d    f    g    h    j    k    l    ;    '    ret
+	lsft   	z    x    c    v    b    n    m    ,    .    /    rsft
+	lctl    lmet lalt           spc            ralt prnt rctl 
+)
+;; t14最下面两行本来的布局，
+;; 笔记本上的fn无法映射，原因参考 https://github.com/kmonad/kmonad/blob/85aa367717d1229e928cbe6821e3b1facb2a50fc/doc/faq.md#q-why-cant-i-remap-the-fn-key-on-my-laptop
+;;	fn		lctl    lmet lalt           spc            ralt prnt rctl pgup up pgdn
+;;														left	down 	right
+;; ----------------------------------------}}}
+
+
+;; Default layout aliases
+(defalias
+	spc (tap-next-release spc (layer-toggle vi)) 		;; 按住Space键后，就切换到VI模式
+	f1 (tap-hold 300 f1 (layer-switch original)) 	;; 长按f1键后，切换到未修改按键模式，适用于别人使用我的键盘
+	;; ral (multi-tap 300 ralt (around lmet spc))	 		;; 快速双击友Alt键，发送win+space，切换输入法
+
+	;; 4 (tap-hold 300 4 caps)		 ;; 300ms时间内按下并释放是 4，按住超过300ms，即长按后，为大小写锁定键
+	lct (tap-next caps lctl)
+	cap (tap-next esc lctl)		 
+	rec (tap-next ret rctl)
+	cpy C-c
+	pst C-v
+	cut C-x
+	udo C-z
+	all C-a
+	fnd C-f
+	bk Back
+	fw Forward
+)
+
+(deflayer default
+	esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  @f1  f12 	
+	grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
+	tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
+	@cap    a    s    d    f    g    h    j    k    l    ;    '   @rec 
+	lsft   	z    x    c    v    b    n    m    ,    .    /    rsft
+	   		@lct    lmet lalt           @spc            ralt  prnt rctl 
+)
+
+;; ----------VI-like-mode-aliases----------{{{
+;; space按键激发VI模式后(hold space)，再按下如下键
+;; Backspace -> Delete
+;; a -> home
+;; e -> end
+;; w -> 下一个word开始
+;; b -> 上一个word开始
+;; h/j/k/l -> vim下方向键
+
+(defalias 
+	b (around rctl lft)
+	w (around rctl rght)
+	inp (around lmet spc) 	;;在Windows下发送Win+Space, 切换输入法
+)
+
+(deflayer vi
+	_    _    _    _    _    _    _    _    _    _    _    _    _
+	_    _    _    _    _    _    _    _    _    _    _    _    _   del 
+	_    _    @w   end  _    _    _    _    @inp _    _    _    _    _
+	_    home _    _    _    _    lft  down up  rght  _    _    _
+	_    _    _    _    _    @b   _    _    _    _    _    _
+	 	 _    _    _              _              _    _    _  
+)
+;; ----------------------------------------}}}
+
+
+(defalias
+	f2 (tap-hold 200 f12 (layer-switch default)) 	;; 长按超过200ms，删除当前layer，回到默认页面
+)
+(deflayer original
+	esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  @f2 
+	grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
+	tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
+	caps    a    s    d    f    g    h    j    k    l    ;    '    ret
+	lsft   	z    x    c    v    b    n    m    ,    .    /    rsft
+	lctl    lmet lalt           spc            ralt prnt rctl 
+)
+
 
 #| -------------------------------------------------------------------------- {{{
 ;; levovo laptop T14
 (defsrc
-	esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  F12 	home 	end 	ins 	del
+	esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12 	home 	end 	ins 	del
 	grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
 	tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
 	caps    a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -55,98 +141,13 @@
 	lsft z    x    c    v    b    n    m    ,    .    /    rsft            
 	lctl lmet lalt           spc            ralt rmet cmp  rctl            
 )
+
+(deflayer empty 
+	_    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+	_    _    _    _    _    _    _    _    _    _    _    _    _    _
+	_    _    _    _    _    _    _    _    _    _    _    _    _    _
+	_    _    _    _    _    _    _    _    _    _    _    _    _
+	_    _    _    _    _    _    _    _    _    _    _    _
+	 	 _    _    _              _              _    _    _    _ 	_ 	_
+)
 -------------------------------------------------------------------------}}} |#
-(defsrc
-	esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        prnt slck pause
-	grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-	caps a    s    d    f    g    h    j    k    l    ;    '    ret
-	lsft z    x    c    v    b    n    m    ,    .    /    rsft
-	lctl lmet lalt           spc            ralt rmet cmp  rctl            
-)
-
-;; Default layout aliases
-(defalias
-	spc (tap-next-release spc (layer-toggle vi)) 		;; 按住Space键后，就切换到VI模式
-	;; hom (tap-hold 300 home (layer-switch original)) 	;; 长按home键后，切换到未修改按键模式，适用于别人使用我的键盘
-	;; ral (multi-tap 300 ralt (around lmet spc))	 		;; 快速双击友Alt键，发送win+space，切换输入法
-
-	;; 4 (tap-hold 300 4 caps)		 ;; 300ms时间内按下并释放是 4，按住超过300ms，即长按后，为大小写锁定键
-	lct (tap-next caps lctl)
-	cap (tap-next esc lctl)		 
-	rec (tap-next ret rctl)
-	cpy C-c
-	pst C-v
-	cut C-x
-	udo C-z
-	all C-a
-	fnd C-f
-	bk Back
-	fw Forward
-)
-
-
-(deflayer default
-	esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        prnt slck pause
-	grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-	@cap q    w    e    r    t    y    u    i    o    p    [    ]    \
-	caps a    s    d    f    g    h    j    k    l    ;    '    @rec
-	lsft z    x    c    v    b    n    m    ,    .    /    rsft
-	@lct lmet lalt          @spc            ralt rmet cmp  rctl            
-)
-
-
-;; ----------VI-like-mode-aliases----------{{{
-;; space按键激发VI模式后(hold space)，再按下如下键
-;; Backspace -> Delete
-;; a -> home
-;; e -> end
-;; w -> 下一个word开始
-;; b -> 上一个word开始
-;; h/j/k/l -> vim下方向键
-
-(defalias 
-	b (around rctl lft)
-	w (around rctl rght)
-	inp (around lmet spc) 	;;在Windows下发送Win+Space, 切换输入法
-	;; v (layer-add sel)
-)
-
-#|
-;; VI-selection-like-mode-aliases 
-(defalias 
-	vb (around rctl S-lft)
-	vw (around rctl S-rght)
-	vlf S-lft
-	vrg S-rght
-	vup S-up
-	vdo S-down
-	vho S-home
-	ven S-end
-	ves (layer-rem sel)
-)
-|#
-
-(deflayer vi
-	_    _    _    _    _    _    _    _    _    _    _    _    _         _    _    _
-	_    _    _    _    _    _    _    _    _    _    _    _    _   del 
-	_    _    @w   end  _    _    _    _    @inp _    _    _    _    _
-	_    home _    _    _    _    lft  down up  rght  _    _    _
-	_    _    _    _    _    @b   _    _    _    _    _    _
-	_    _    _              _              _    _    _    _ 	
-)
-;; ----------------------------------------}}}
-
-#|
-(defalias
-	en (tap-hold 200 end (layer-switch default)) 	;; 长按超过200ms，删除当前layer，回到默认页面
-)
-(deflayer original
-	esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  F12 	home  @en  ins 	del
-	grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
-	tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
-	caps    a    s    d    f    g    h    j    k    l    ;    '    ret
-	lsft   	z    x    c    v    b    n    m    ,    .    /    rsft
-	lctl    lmet lalt           spc            ralt prnt rctl pgup up pgdn
-)
-|#
