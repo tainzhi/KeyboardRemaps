@@ -23,8 +23,8 @@
 	grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
 	tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
 	caps    a    s    d    f    g    h    j    k    l    ;    '    ret
-	lsft   	z    x    c    v    b    n    m    ,    .    /    rsft
-	lctl    lmet lalt           spc            ralt prnt rctl 
+	lsft   	z    x    c    v    b    n    m    ,    .    /    
+	lctl    lmet lalt           	spc            	ralt prnt rctl 
 )
 ;; t14最下面两行本来的布局，
 ;; 笔记本上的fn无法映射，原因参考 https://github.com/kmonad/kmonad/blob/85aa367717d1229e928cbe6821e3b1facb2a50fc/doc/faq.md#q-why-cant-i-remap-the-fn-key-on-my-laptop
@@ -35,7 +35,11 @@
 
 ;; Default layout aliases
 (defalias
-	spc (tap-next-release spc (layer-toggle vi)) 		;; 按住Space键后，就切换到VI模式
+	;; spc (tap-next-release spc (layer-toggle vi)) 		;; 按住Space键后，就切换到VI模式
+        lal (tap-next-release lalt (layer-toggle vi))                   ;; space与vim leader冲突, 故改成lalt
+
+	;; rsf (tap-hold-next-release 100 (layer-toggle rdp) rsft) 		;; 按住右shift键后，就切换到RDP层
+	;; 不映射right shift, 因为 fallthrough true
 	f1 (tap-hold 300 f1 (layer-switch original)) 	;; 长按f1键后，切换到未修改按键模式，适用于别人使用我的键盘
 	;; ral (multi-tap 300 ralt (around lmet spc))	 		;; 快速双击友Alt键，发送win+space，切换输入法
 
@@ -58,8 +62,8 @@
 	grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
 	tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
 	@cap    a    s    d    f    g    h    j    k    l    ;    '   @rec 
-	lsft   	z    x    c    v    b    n    m    ,    .    /    rsft
-	   		@lct    lmet lalt           @spc            ralt  prnt rctl 
+	lsft   	z    x    c    v    b    n    m    ,    .    /    
+	   		@lct    lmet @lal           spc            ralt  prnt rctl 
 )
 
 ;; ----------VI-like-mode-aliases----------{{{
@@ -82,10 +86,22 @@
 	_    _    _    _    _    _    _    _    _    _    _    _    _   del 
 	_    _    @w   end  _    _    _    _    @inp _    _    _    _    _
 	_    home _    _    _    _    lft  down up  rght  _    _    _
-	_    _    _    _    _    @b   _    _    _    _    _    _
+	_    _    _    _    _    @b   _    _    _    _    _    
 	 	 _    _    _              _              _    _    _  
 )
 ;; ----------------------------------------}}}
+
+;; windows远程桌面RDP无法传递 right shift + 字母实现大写
+;; 故添加一个右键传递shift layer
+;; 参考: https://github.com/kmonad/kmonad/issues/111
+;; (deflayer rdp 
+;; 	_    _    _    _    _    _    _    _    _    _    _    _    _ 
+;; 	~    !    @    #    $    %    _    _    _    _    _    _    _    _
+;; 	_    Q    W    E    R    T    _    _    _    _    _    _    _    _
+;; 	_    A    S    D    F    G    _    _    _    _    _    _    _
+;; 	_    Z    X    C    V    B    _    _    _    _    _    
+;; 	 	 _    _    _              _              _    _    _  
+;; )
 
 
 (defalias
@@ -96,9 +112,16 @@
 	grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
 	tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
 	caps    a    s    d    f    g    h    j    k    l    ;    '    ret
-	lsft   	z    x    c    v    b    n    m    ,    .    /    rsft
+	lsft   	z    x    c    v    b    n    m    ,    .    /    
 	lctl    lmet lalt           spc            ralt prnt rctl 
 )
+
+
+
+
+
+
+
 
 
 #| -------------------------------------------------------------------------- {{{
