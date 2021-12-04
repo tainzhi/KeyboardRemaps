@@ -36,7 +36,7 @@
 ;; Default layout aliases
 (defalias
 	;; spc (tap-next-release spc (layer-toggle vi)) 		;; 按住Space键后，就切换到VI模式
-        lal (tap-next-release lalt (layer-toggle vi))                   ;; space与vim leader冲突, 故改成lalt
+	lal (tap-next-release lalt (layer-toggle vi))                   ;; space与vim leader冲突, 故改成lalt
 
 	;; rsf (tap-hold-next-release 100 (layer-toggle rdp) rsft) 		;; 按住右shift键后，就切换到RDP层
 	;; 不映射right shift, 因为 fallthrough true

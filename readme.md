@@ -28,6 +28,25 @@
 
 ### Windows
 
+#### 方案1：[kmonad](https://github.com/kmonad/kmonad)
+windows下该软件的实现原理和power toys一样，通过截获键盘挂钩实现的：目前还是有些bug，使用一段时间后，改建混乱，只能重启，而且xrdp中无法使用。
+在windows下该方法从驱动层实现，功能强大。
+
+实现的功能有：
+- 左ctrl改为CapsLock
+- CapsLock改为，在组合按键的时候改为左ctrl，单按为Esc
+- Enter，在组合按键时改为右Ctrl，单按为Enter
+- Alt + I  切换输入法
+- Alt + Backspace 实现Delete功能，即后删除
+- Alt + J Down方向键
+- Alt + K UP方向键
+- Alt + L Right方向键
+- Alt + H Left方向键
+- Alt + E End键
+- Alt + A Home键
+- Alt + W 下一个word开始
+- Alt + B 上一个word开始
+
 #### 方案2：[AutoHotkey]
 [Autohotkey自动切换输入法](https://github.com/lspcieee/lspcieee_ahk)
 实现的功能有：
