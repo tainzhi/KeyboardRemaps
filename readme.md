@@ -29,8 +29,8 @@
 ### Windows
 
 #### 方案1：[kmonad](https://github.com/kmonad/kmonad)
-windows下该软件的实现原理和power toys一样，通过截获键盘挂钩实现的：目前还是有些bug，使用一段时间后，改建混乱，只能重启，而且xrdp中无法使用。
-在windows下该方法从驱动层实现，功能强大。
+- windows下该软件的实现原理和power toys一样，通过截获键盘挂钩实现的：目前还是有些bug，使用一段时间后，改建混乱，只能重启，而且xrdp中无法使用。
+- linux下该方法从驱动层实现，功能强大。
 
 实现的功能有：
 - 左ctrl改为CapsLock
