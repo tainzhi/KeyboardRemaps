@@ -1,0 +1,65 @@
+#|
+https://github.com/jtroo/kanata/blob/main/docs/config.adoc
+
+example:
+https://github.com/jtroo/kanata/blob/main/cfg_samples/simple.kbd
+|#
+(defcfg
+  danger-enable-cmd yes
+)
+
+(deflocalkeys-win
+  ì 187
+)
+
+(deflocalkeys-wintercept
+  ì 187
+)
+
+(deflocalkeys-linux
+  ì 13
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12 
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(deflayer qwerty
+  ;; 把 escape 键映射成 CapsLock键
+  caps f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @cap a    s    d    f    g    h    j    k    l    ;    '    @rec
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet @lal           spc            ralt rmet rctl
+)
+
+
+(deflayer vim
+	_    _    _    _    _    _    _    _    _    _    _    _    _
+	_    _    _    _    _    _    _    _    _    _    _    _    _   del 
+	_    _    @w   end  _    _    _    _    @inp _    _    _    _    _
+	_    home _    _    _    _    lft  down up  rght  _    _    @are
+	_    _    _    _    _    @b   _    _    _    _    _    _
+	 	 _    _    _              _              _    _    _  
+)
+
+(defalias
+
+  ;; 把CapsLock键映射成escape键，长按改键后映射成左ctrl键
+  cap (tap-hold 200 200 esc lctl)
+  ;; 长按回车键后，把该键映射成右ctrl键
+  rec (tap-hold 200 200 ret  rctl)
+  vi (layer-toggle vim)
+  lal (tap-hold 200 200 lalt @vi)
+	b (multi rctl lft)
+	w (multi rctl rght)
+	inp (multi lmet spc) 	;;在Windows下发送Win+Space, 切换输入法
+	are (multi lalt ret)   ;;左alt作为触发键后, 就失去了 alt+enter 功能, 这里模拟一个
+  bnor (cmd C:\\Progra~1\\im-select.exe 1033)
+)

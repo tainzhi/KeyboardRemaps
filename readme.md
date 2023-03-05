@@ -28,9 +28,16 @@
 
 ### Windows
 
-#### 方案1：[kmonad](https://github.com/kmonad/kmonad)
-- windows下该软件的实现原理和power toys一样，通过截获键盘挂钩实现的：目前还是有些bug，使用一段时间后，改建混乱，只能重启，而且xrdp中无法使用。
+#### 方案1：[kanata](https://github.com/kmonad/kmonad)
+- windows下该软件的实现原理和power toys一样，通过截获键盘挂钩实现的：同时也支持从driver层改键，这样就能支持remote desktop
 - linux下该方法从驱动层实现，功能强大。
+
+注意：kanata为了能从系统层面hook按键，安装了相关的driver interception
+入股需要卸载这个driver，那么管理员权限进入 `interception/command line installer`目录
+```
+install-interception.exe /uninstall
+```
+然后重启
 
 实现的功能有：
 - 左ctrl改为CapsLock
@@ -69,6 +76,11 @@
 
 [参考: 「AutoHotkey 之美」内容导读](https://zhuanlan.zhihu.com/p/19829548)
 [基于AutoHotkey的脚本录制工具](https://www.macrocreator.com/)
+
+#### ~~方案5：[废弃][kmonad](https://github.com/kmonad/kmonad)~~
+废弃的原因
+1. 项目长久没有更新，用haskell语言实现的也不会修改
+2. 相比于kanata在windows terminal下会导致按键错乱，也不支持remote deskop。
 
 ### linux
 Linux系统，每个输入设备（ls -l /dev/input）都有如下过程
