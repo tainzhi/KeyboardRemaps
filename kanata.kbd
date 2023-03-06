@@ -8,10 +8,6 @@ https://github.com/jtroo/kanata/blob/main/cfg_samples/simple.kbd
   danger-enable-cmd yes
 )
 
-(deflocalkeys-win
-  ì 187
-)
-
 (deflocalkeys-wintercept
   ì 187
 )
@@ -61,5 +57,5 @@ https://github.com/jtroo/kanata/blob/main/cfg_samples/simple.kbd
 	w (multi rctl rght)
 	inp (multi lmet spc) 	;;在Windows下发送Win+Space, 切换输入法
 	are (multi lalt ret)   ;;左alt作为触发键后, 就失去了 alt+enter 功能, 这里模拟一个
-  bnor (cmd C:\\Progra~1\\im-select.exe 1033)
+  ;; bnor (cmd C:\\Progra~1\\im-select.exe 1033)
 )
