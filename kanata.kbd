@@ -48,11 +48,11 @@ https://github.com/jtroo/kanata/blob/main/cfg_samples/simple.kbd
 (defalias
 
   ;; 把CapsLock键映射成escape键，长按改键后映射成左ctrl键
-  cap (tap-hold 200 200 esc lctl)
+  cap (tap-hold 150 150 esc lctl)
   ;; 长按回车键后，把该键映射成右ctrl键
-  rec (tap-hold 200 200 ret  rctl)
+  rec (tap-hold 150 150 ret  rctl)
   vi (layer-toggle vim)
-  lal (tap-hold 200 200 lalt @vi)
+  lal (tap-hold 150 150 lalt @vi)
 	b (multi rctl lft)
 	w (multi rctl rght)
 	inp (multi lmet spc) 	  ;;在Windows下发送Win+Space, 切换输入法
