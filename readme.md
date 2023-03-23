@@ -33,11 +33,12 @@
 - linux下该方法从驱动层实现，功能强大。
 
 注意：kanata为了能从系统层面hook按键，安装了相关的driver interception
-入股需要卸载这个driver，那么管理员权限进入 `interception/command line installer`目录
+如果需要卸载这个driver，那么管理员权限进入 `interception/command line installer`目录
 ```
 install-interception.exe /uninstall
 ```
 然后重启
+有时，在笔记本上多次睡眠模式重启之后会出现键盘实效的情况，重启笔记本即可。
 
 实现的功能有：
 - 左ctrl改为CapsLock
