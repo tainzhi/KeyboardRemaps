@@ -1,8 +1,6 @@
-# info
-我的auto hotkeys脚本, 适用于windows系统
+## info
+我的改建脚本, 使用 [kanata](https://github.com/jtroo/kanata)适用于windows/linux/macOS系统
 
-
-# 其他
 ## 一些auto hotkeys基本知识
 ## 关于改键
 改键最需要实现的功能是
@@ -26,7 +24,7 @@
 - 有多个profile, 比如一个是默认无修改的(方便别人使用自己的键盘), 一个是有修改
 - 可以针对不同的键盘(自带键盘, usb外接键盘)分别配置方案
 
-### Windows
+### Windows(在远程桌面也能生效)
 
 #### 方案1：[kanata](https://github.com/kmonad/kmonad)
 - windows下该软件的实现原理和power toys一样，通过截获键盘挂钩实现的：同时也支持从driver层改键，这样就能支持remote desktop
@@ -34,11 +32,16 @@
 
 注意：kanata为了能从系统层面hook按键，安装了相关的driver interception
 如果需要卸载这个driver，那么管理员权限进入 `interception/command line installer`目录
-```
-install-interception.exe /uninstall
+```bash
+install-interception.exe /install
 ```
 然后重启
 有时，在笔记本上多次睡眠模式重启之后会出现键盘实效的情况，重启笔记本即可。
+
+
+使用：~~不再使用 `kanata_winterept_cmd_allowed.exe`，从shell cmd启动~~。使用 `kanata_gui_winterept_cmd_allowed.exe`，直接刷机启动GUI版，其会读取当前目录下`kanata.kbd`，然后以状态栏图标显示，无需cmd窗口。
+
+**建议：把`kanata_gui_winterept_cmd_allowed.exe`的快捷方式放在`AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`中，这样开启会自动启动**
 
 实现的功能有：
 - 左ctrl改为CapsLock
@@ -55,8 +58,7 @@ install-interception.exe /uninstall
 - Alt + W 下一个word开始
 - Alt + B 上一个word开始
 
-#### 方案2：[AutoHotkey]
-[Autohotkey自动切换输入法](https://github.com/lspcieee/lspcieee_ahk)
+#### 方案2：~~[AutoHotkey] [Autohotkey自动切换输入法](https://github.com/lspcieee/lspcieee_ahk)~~
 实现的功能有：
 - 左Ctrl切换大小写
 - CapsLock单按是Esc键，和其他键组合是左Ctrl键
@@ -68,12 +70,12 @@ install-interception.exe /uninstall
 
 - 缺点：对Remote Desktop Connection中的远程系统无效
 
-#### 方案3: [sharpkeys](https://github.com/randyrants/sharpkeys)修改全局的注册表，可以导出配置。缺点有2
+#### ~~方案3: [sharpkeys](https://github.com/randyrants/sharpkeys)修改全局的注册表，可以导出配置。缺点有2~~
 >1 全局方案, 不能根据不同的软件配置不同的remap
 >2 写入了注册表, 所以需要重启/重新登陆
 >3 最大的缺点: 只能**单键映射单键, 无法多键映射**
 
-#### 方案4：[uncap](https://github.com/susam/uncap)
+#### ~~方案4：[uncap](https://github.com/susam/uncap)~~
 
 [参考: 「AutoHotkey 之美」内容导读](https://zhuanlan.zhihu.com/p/19829548)
 [基于AutoHotkey的脚本录制工具](https://www.macrocreator.com/)
@@ -132,15 +134,5 @@ control     Control_L (0x25),  Control_R (0x6d)
 
 清除所有的改键，要么重启，要么执行` setxkbmap -option ''`
 
-### linux最终改键方案
-实现的改键功能为
-#### 方法1：xrdp的远程桌面
+**linux最终改键方案**： 
 使用脚本`./remap_keys.sh`, 每次启动时 `sh ./remap_keys.sh`
-
-实现的改键功能有
-- 左Ctrl切换大小写
-- CapsLock单按是Esc键，和其他键组合是左Ctrl键
-- Enter单按是Enter, 和其他键组合是右Ctrl键
-
-#### 方法2：本地linux主机使用kmonad
-- [参考：开启启动kmond脚本](https://github.com/kmonad/kmonad/tree/master/startup)
