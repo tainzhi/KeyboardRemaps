@@ -6,6 +6,15 @@ https://github.com/jtroo/kanata/blob/main/cfg_samples/simple.kbd
 |#
 (defcfg
   danger-enable-cmd yes
+  log-layer-changes    		yes	;;|no| overhead
+  icon-match-layer-name   	yes  	;;|yes| match layer name to icon files even without an explicit (icon name.ico) config
+  tooltip-layer-changes   	yes  	;;|false|
+  tooltip-show-blank      	no  	;;|no|
+  tooltip-duration        	800   ;; 控制切换layer时鼠标所在位置闪烁的图片显示时间
+  tooltip-size            	32,32	;;|24 24|
+  notify-cfg-reload       	yes  	;;|yes|
+  notify-cfg-reload-silent	no   	;;|no|
+  notify-error            	yes  	;;|yes|
 )
 
 (deflocalkeys-wintercept
@@ -36,27 +45,26 @@ https://github.com/jtroo/kanata/blob/main/cfg_samples/simple.kbd
 )
 
 
-(deflayer vim
+(deflayer (vim 🖻 ".\icon\vim.ico")  ;; 激活该layer后，会在鼠标处闪烁vim图标，该图标来自于当前运行目录的相对目录下的 icon\vim.ico
 	_    _    _    _    _    _    _    _    _    _    _    _    _
 	_    _    _    _    _    _    _    _    _    _    _    _    _   del 
-	@atb _    @w   end  _    _    _    _    @inp _    _    _    _    _
+	_    _    @w   end  _    _    _    _    @inp _    _    _    _    _
 	_    home _    _    _    _    lft  down up  rght  _    _    @are
 	_    _    _    _    _    @b   _    _    _    _    _    _
 	 	 _    _    _              _              _    _    _  
 )
 
 (defalias
-
-  ;; 把CapsLock键映射成escape键，长按改键后映射成左ctrl键
-  cap (tap-hold 150 150 esc lctl)
+  ;; 把CapsLock键映射成escape键，长按该键后映射成左ctrl键
+  cap (tap-hold-release 200 200 esc lctl)
   ;; 长按回车键后，把该键映射成右ctrl键
-  rec (tap-hold 150 150 ret  rctl)
+  rec (tap-hold-release 200 200 ret  rctl)
   vi (layer-toggle vim)
-  lal (tap-hold 150 150 lalt @vi)
+  lal (tap-hold-release 200 200 lalt @vi)
 	b (multi rctl lft)
 	w (multi rctl rght)
 	inp (multi lmet spc) 	  ;;在Windows下发送Win+Space, 切换输入法
 	are (multi ralt ret)    ;;左alt作为触发键后, 就失去了 alt+enter 功能, 这里模拟一个
-  atb (multi lalt tab)    ;;因为lalt作为了触发vi layer的按键，导致 lalt和tab按键实效
+  ;; atb (multi lalt tab)    ;;因为lalt作为了触发vi layer的按键，导致 lalt和tab按键实效
   ;; bnor (cmd C:\\Progra~1\\im-select.exe 1033)
 )

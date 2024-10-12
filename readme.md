@@ -41,7 +41,7 @@ install-interception.exe /install
 
 使用：~~不再使用 `kanata_winterept_cmd_allowed.exe`，从shell cmd启动~~。使用 `kanata_gui_winterept_cmd_allowed.exe`，直接刷机启动GUI版，其会读取当前目录下`kanata.kbd`，然后以状态栏图标显示，无需cmd窗口。
 
-**建议：把`kanata_gui_winterept_cmd_allowed.exe`的快捷方式放在`AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`中，这样开启会自动启动**
+**建议：把`kanata_gui_winterept_cmd_allowed.exe`的快捷方式放在`%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup`中，这样开机会自动启动**
 
 实现的功能有：
 - 左ctrl改为CapsLock
@@ -58,7 +58,7 @@ install-interception.exe /install
 - Alt + W 下一个word开始
 - Alt + B 上一个word开始
 
-#### 方案2：~~[AutoHotkey] [Autohotkey自动切换输入法](https://github.com/lspcieee/lspcieee_ahk)~~
+#### ~~方案2：[AutoHotkey] [Autohotkey自动切换输入法](https://github.com/lspcieee/lspcieee_ahk)~~
 实现的功能有：
 - 左Ctrl切换大小写
 - CapsLock单按是Esc键，和其他键组合是左Ctrl键
