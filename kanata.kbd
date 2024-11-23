@@ -48,7 +48,7 @@ https://github.com/jtroo/kanata/blob/main/cfg_samples/simple.kbd
 (deflayer (vim 🖻 ".\icon\vim.ico")  ;; 激活该layer后，会在鼠标处闪烁vim图标，该图标来自于当前运行目录的相对目录下的 icon\vim.ico
 	_    _    _    _    _    _    _    _    _    _    _    _    _
 	_    _    _    _    _    _    _    _    _    _    _    _    _   del 
-	_    _    @w   end  _    _    _    _    @inp _    _    _    _    _
+	@mat _        @w   end  _    _    _    _    @inp _    _    _    _    _
 	_    home _    _    _    _    lft  down up  rght  _    _    @are
 	_    _    _    _    _    @b   _    _    _    _    _    _
 	 	 _    _    _              _              _    _    _  
@@ -65,6 +65,7 @@ https://github.com/jtroo/kanata/blob/main/cfg_samples/simple.kbd
 	w (multi rctl rght)
 	inp (multi lmet spc) 	  ;;在Windows下发送Win+Space, 切换输入法
 	are (multi ralt ret)    ;;左alt作为触发键后, 就失去了 alt+enter 功能, 这里模拟一个
+  mat (multi ralt tab)    ;; 左alt作为触发键后, 就失去了 alt+tab 功能, 这里模拟一个
   ;; atb (multi lalt tab)    ;;因为lalt作为了触发vi layer的按键，导致 lalt和tab按键实效
   ;; bnor (cmd C:\\Progra~1\\im-select.exe 1033)
 )
