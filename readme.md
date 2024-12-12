@@ -1,30 +1,23 @@
 ## info
-我的改建脚本, 使用 [kanata](https://github.com/jtroo/kanata)适用于windows/linux/macOS系统
+我的改建脚本, 使用 [kanata](https://github.com/jtroo/kanata) 适用于windows/linux/macOS系统
 
-## 一些auto hotkeys基本知识
-## 关于改键
+## 关于改键, 最核心的功能需求
 改键最需要实现的功能是
 - 同时按下`CapsLock+其他键`, remap成 `LCtrl+其他键`; 反之, 单按`CapsLock`键为`Esc`键; 单按`Esc`键为`CapsLock`键
 - 同时按下`Enter+其他键`, remap成 `RCtrl+其他键`; 反之, 单按 `Enter` 键就是 `Enter`
 - remap `shift+Backspace` 为 `delete`
 
-### vim切换中英文
-- vscode + vim plugin搭配 [im-select](daipeihust/im-select: Switch your input method through terminal) , 注意: im-select只有windows和macOS支持, 而Linux 可以使用 [fcitx-remote](daipeihust/im-select: Switch your input method through terminal)
-- ha/vim-xkbswitch: vim plugin for automatic keyboard layout switching in insert mode (github.com)
-- vim切换规则
->- 只有在insert state输入中文, 所以在normal state切换到中文输入法应该自动进入 insert state
->- 在 insert state里关闭输入法的目的可能是要输入英文, 所以应该呆在 insert state
->- 在 insert state按 Esc 键, 意味着切换回 Normal state, 这时自动关闭输入法
 
+## 不同系统的改建方案
 
 ### MacOS
-有很方便的工具改键工具 [Karabiner Elements](https://github.com/pqrs-org/Karabiner-Elements). 其特性有
+有很方便的工具改键工具 [Karabiner Elements](https://github.com/pqrs-org/Karabiner-Elements) (当然也可以使用 kanata, 是跨平台的，我还没有在MacOS测试使用). 其特性有
 - 很方便设置, 很容易上手
 - 可以导出设置
 - 有多个profile, 比如一个是默认无修改的(方便别人使用自己的键盘), 一个是有修改
 - 可以针对不同的键盘(自带键盘, usb外接键盘)分别配置方案
 
-### Windows(在远程桌面也能生效)
+### Windows(在远程桌面rdp也能生效)
 
 #### 方案1：[kanata](https://github.com/kmonad/kmonad)
 - windows下该软件的实现原理和power toys一样，通过截获键盘挂钩实现的：同时也支持从driver层改键，这样就能支持remote desktop
@@ -58,7 +51,7 @@ install-interception.exe /install
 - Alt + W 下一个word开始
 - Alt + B 上一个word开始
 
-#### ~~方案2：[AutoHotkey] [Autohotkey自动切换输入法](https://github.com/lspcieee/lspcieee_ahk)~~
+#### ~~方案2：[Deprecated][AutoHotkey] [Autohotkey自动切换输入法](https://github.com/lspcieee/lspcieee_ahk)~~
 实现的功能有：
 - 左Ctrl切换大小写
 - CapsLock单按是Esc键，和其他键组合是左Ctrl键
@@ -70,22 +63,26 @@ install-interception.exe /install
 
 - 缺点：对Remote Desktop Connection中的远程系统无效
 
-#### ~~方案3: [sharpkeys](https://github.com/randyrants/sharpkeys)修改全局的注册表，可以导出配置。缺点有2~~
+#### ~~方案3: [Deprecated][sharpkeys](https://github.com/randyrants/sharpkeys)修改全局的注册表，可以导出配置。缺点有2~~
 >1 全局方案, 不能根据不同的软件配置不同的remap
 >2 写入了注册表, 所以需要重启/重新登陆
 >3 最大的缺点: 只能**单键映射单键, 无法多键映射**
 
-#### ~~方案4：[uncap](https://github.com/susam/uncap)~~
+#### ~~方案4：[Deprecated][uncap](https://github.com/susam/uncap)~~
 
 [参考: 「AutoHotkey 之美」内容导读](https://zhuanlan.zhihu.com/p/19829548)
 [基于AutoHotkey的脚本录制工具](https://www.macrocreator.com/)
 
-#### ~~方案5：[废弃][kmonad](https://github.com/kmonad/kmonad)~~
+#### ~~方案5：[Deprecated][废弃][kmonad](https://github.com/kmonad/kmonad)~~
 废弃的原因
 1. 项目长久没有更新，用haskell语言实现的也不会修改
 2. 相比于kanata在windows terminal下会导致按键错乱，也不支持remote deskop。
 
 ### linux
+使用 [kanata](https://github.com/jtroo/kanata)。我的配置还没有在linux下测试，应该是可用的。具体参考 kanata 在windows下的配置
+
+## 其他
+### ~~[deprecated]linux键盘映射系统知识~~
 Linux系统，每个输入设备（ls -l /dev/input）都有如下过程
 /keyboard ->  scancode -> /input driver  ->  keycode  ->  /X server XKB  ->   keysym
 
